@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bridge2U</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="font-controls">
+        <button id="font-decrease">A-</button>
+        <button id="font-reset">A</button>
+        <button id="font-increase">A+</button>
+    </div>
+
+    <!-- START SCREEN -->
+    <section id="start-screen" class="screen start-screen">
+        <div class="center-box">
+            <img src="logo.png" alt="Bridge2U logo" class="logo" />
+            <button id="start-btn" class="green-btn" data-i18n="getStarted">
+                Get Started
+            </button>
+        </div>
+    </section>
+
+    <!-- LANGUAGE SCREEN -->
+    <section id="language-screen" class="screen hidden">
+        <div class="small-card">
+            <h2 data-i18n="languageLabel">Language:</h2>
+            <select id="language-select">
+                <option value="">Select language</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="zh">中文</option>
+                <option value="tl">Tagalog</option>
+            </select>
+
+            <div class="button-row">
+                <button class="green-btn exit-btn" id="language-exit" data-i18n="exit">
+                    EXIT
+                </button>
+                <button class="green-btn" id="language-next" data-i18n="next">
+                    NEXT
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION SCREEN -->
+    <section id="location-screen" class="screen hidden">
+        <div class="small-card">
+            <h2 data-i18n="locationLabel">Choose your location:</h2>
+            <select id="location-select">
+                <option value="">Select location</option>
+                <option value="Vancouver">Vancouver</option>
+                <option value="Burnaby">Burnaby</option>
+                <option value="Surrey">Surrey</option>
+                <option value="Richmond">Richmond</option>
+                <option value="Coquitlam">Coquitlam</option>
+            </select>
+            <div class="button-row">
+                <button class="green-btn exit-btn" id="location-exit" data-i18n="exit">
+                    EXIT
+                </button>
+                <button class="green-btn" id="location-next" data-i18n="next">
+                    NEXT
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- APP SCREEN -->
+    <section id="app-screen" class="hidden">
+        <div class="app-topbar">
+            <button class="nav-link active" data-tab="home-tab" data-i18n="tabHome">Home</button>
+            <button class="nav-link" data-tab="child-tab" data-i18n="tabChild">Child Support</button>
+            <button class="nav-link" data-tab="food-tab" data-i18n="tabFood">Foods & Recipes</button>
+            <button class="nav-link" data-tab="clothing-tab" data-i18n="tabClothingItems">Clothing & Items</button>
+            <button class="nav-link nav-exit" id="app-exit" data-i18n="exit">EXIT</button>
+        </div>
+        <div class="app-shell">
+            <!-- HOME TAB -->
+            <div id="home-tab" class="tab-content">
+                <div class="home-card">
+                    <h1 id="welcome-text" data-i18n="welcome">Welcome, you’re safe here 💛</h1>
+                    <p id="help-text" data-i18n="helpToday">What can we help you with today?</p>
+                    <div class="main-button-stack">
+                        <button class="main-nav-btn" data-target-tab="child-tab">
+                            👶 <span data-i18n="navChildren">Help with my children</span>
+                        </button>
+                        <button class="main-nav-btn" data-target-tab="food-tab">
+                            🍎 <span data-i18n="navFood">Find food and recipes</span>
+                        </button>
+                        <button class="main-nav-btn" data-target-tab="clothing-tab">
+                            👚 <span data-i18n="navClothes">Find clothes and items</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOD TAB -->
+            <div id="food-tab" class="tab-content hidden">
+                <div class="food-header">
+                    <h2>🍎 <span data-i18n="foodTitle">Food and Recipes</span></h2>
+                    <p class="section-subtitle" data-i18n="foodSubtitle">Kitchen Access:</p>
+                    <div class="kitchen-access-row">
+                        <button class="mini-btn kitchen-filter-btn active-filter" data-filter="any"
+                            data-i18n="kitchenAny">Any</button>
+                        <button class="mini-btn kitchen-filter-btn" data-filter="stove"
+                            data-i18n="kitchenStove">Stove</button>
+                        <button class="mini-btn kitchen-filter-btn" data-filter="microwave"
+                            data-i18n="kitchenMicrowave">Microwave</button>
+                        <button class="mini-btn kitchen-filter-btn" data-filter="none"
+                            data-i18n="kitchenNone">None</button>
+                    </div>
+                </div>
+                <div class="recipe-grid" id="recipe-grid">
+                    <div class="recipe-card" data-kitchen="stove any">
+                        <img src="https://www.platingsandpairings.com/wp-content/uploads/2021/01/instant-pot-spaghetti-recipe-5-scaled.jpg"
+                            alt="Pasta + Jar Sauce">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe1Title">Pasta + Jar Sauce</h3>
+                            <p data-i18n="recipe1Desc">⚠️ May contain dairy, gluten, soy, or nuts</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="stove any">
+                        <img src="https://shwetainthekitchen.com/wp-content/uploads/2023/06/veg-fried-rice.jpg"
+                            alt="Vegetable Fried Rice">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe2Title">Vegetable Fried Rice</h3>
+                            <p data-i18n="recipe2Desc">⚠️ May contain gluten, soy, sesame or egg</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="stove microwave none any">
+                        <img src="https://www.budgetbytes.com/wp-content/uploads/2017/02/Chicken-Noodle-Soup-Overhead.jpg"
+                            alt="Chicken Noodle Soup">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe3Title">Chicken Noodle Soup</h3>
+                            <p data-i18n="recipe3Desc">⚠️ May contain dairy, gluten, soy, or egg</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="none stove any">
+                        <img src="https://tastesbetterfromscratch.com/wp-content/uploads/2020/03/Buffalo-Chicken-Wrap-3.jpg"
+                            alt="Chicken Wrap">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe4Title">Chicken Wrap</h3>
+                            <p data-i18n="recipe4Desc">⚠️ May contain egg, gluten, dairy, or mustard</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="none stove any">
+                        <img src="https://www.eatingwell.com/thmb/s3AWSL6ExvQzQmh5l_a931lYBtc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Avocado-Tomato-Chicken-Sandwich-1x1-4686_preview_maxWidth_4000_maxHeight_4000_ppi_300_quality_100-af42b0d8afce4c63ab17edfdfbf9eeb9.jpg"
+                            alt="Avocado Tomato Chicken Sandwich">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe5Title">Avocado Tomato Chicken Sandwich</h3>
+                            <p data-i18n="recipe5Desc">⚠️ May contain dairy, gluten, egg, soy, or sesame</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="microwave any">
+                        <img src="https://www.pcrm.org/sites/default/files/2026-02/Oatmeal%20and%20Berries.jpeg"
+                            alt="Oatmeal + Fruit">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe6Title">Oatmeal + Fruit</h3>
+                            <p data-i18n="recipe6Desc">⚠️ May contain dairy, gluten, soy, or nuts</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="stove microwave any">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYO_c5XwiKPv3QYWWiPmaVXBF3Yr2nWWYJKA&s"
+                            alt="Scrambled Eggs + Toast">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe7Title">Scrambled Eggs + Toast</h3>
+                            <p data-i18n="recipe7Desc">⚠️ May contain dairy, gluten, soy, or egg</p>
+                        </div>
+                    </div>
+                    <div class="recipe-card" data-kitchen="none any">
+                        <img src="https://www.daisybeet.com/wp-content/uploads/2023/09/Granola-Yogurt-Bowl-9.jpg"
+                            alt="Yogurt + Granola + Fruits">
+                        <div class="recipe-info">
+                            <h3 data-i18n="recipe8Title">Yogurt + Granola + Fruits</h3>
+                            <p data-i18n="recipe8Desc">⚠️ May contain dairy, gluten, or nuts</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-bank-section">
+                    <h3 data-i18n="foodBankTitle">Food Bank near me:</h3>
+                    <div class="food-bank-layout">
+                        <div class="food-bank-list">
+                            <div class="food-bank-card">
+                                <h4 data-i18n="bank1Title">The Greater Vancouver Food Bank</h4>
+                                <p>8345 Winston St, Burnaby BC V5A 2H3</p>
+                                <p><span data-i18n="contactEmailLabel">Contact email:</span> <a
+                                        href="mailto:reception@foodbank.bc.ca">reception@foodbank.bc.ca</a></p>
+                                <p><span data-i18n="contactPhoneLabel">Contact phone:</span> <a
+                                        href="tel:6048763601">(604) 876-3601</a></p>
+                                <div class="food-bank-bottom">
+                                    <span data-i18n="bank1Distance">3.2 km away</span>
+                                    <a class="food-bank-link" href="https://foodbank.bc.ca/" target="_blank"
+                                        data-i18n="goWebsite">Go to their website</a>
+                                </div>
+                            </div>
+
+                            <div class="food-bank-card">
+                                <h4 data-i18n="bank2Title">CityReach Care Society</h4>
+                                <p>2650 Slocan St, Vancouver, BC V5M 4E9</p>
+                                <p><span data-i18n="contactEmailLabel">Contact email:</span> <a
+                                        href="mailto:info@cityreach.org">info@cityreach.org</a></p>
+                                <p><span data-i18n="contactPhoneLabel">Contact phone:</span> <a
+                                        href="tel:6042542489">(604) 254-2489</a></p>
+                                <div class="food-bank-bottom">
+                                    <span data-i18n="bank2Distance">2.5 km away</span>
+                                    <a class="food-bank-link" href="https://cityreach.org/" target="_blank"
+                                        data-i18n="goWebsite">Go to their website</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="food-bank-map">
+                            <img src="foodbank-map.png" alt="Map showing nearby food banks" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHILD TAB -->
+            <div id="child-tab" class="tab-content hidden">
+                <div class="child-header">
+                    <img src="child-logo.png" alt="Bridge2U child support logo" class="child-logo" />
+                    <h2>👶 <span data-i18n="childTitle">Child Support</span></h2>
+                </div>
+                <div class="child-subtabs">
+                    <button class="child-subtab-btn active" data-child-tab="elementary-panel"
+                        data-i18n="elementaryTab">Elementary</button>
+                    <button class="child-subtab-btn" data-child-tab="secondary-panel"
+                        data-i18n="secondaryTab">Secondary</button>
+                </div>
+
+                <!-- ELEMENTARY -->
+                <div id="elementary-panel" class="child-subtab-content">
+                    <p class="child-subtitle" data-i18n="childSubtitle">Tutoring Sessions For</p>
+                    <p class="child-age-label" data-i18n="childAgeGroup1">Elementary Student</p>
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <h3 data-i18n="support1Title">Math Tutoring</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="support1Time">4 - 6 PM |
+                                    Mon-Wed-Fri</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="support1Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration" data-program="Elementary Math Tutoring"
+                                    data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                        <div class="support-card">
+                            <h3 data-i18n="support2Title">Reading Tutoring</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="support2Time">4 - 6 PM |
+                                    Mon-Wed-Fri</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="support2Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Elementary Reading Tutoring" data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                        <div class="support-card">
+                            <h3 data-i18n="support3Title">Reading Tutoring</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="support3Time">3 - 5 PM |
+                                    Tue-Thu-Sat</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="support3Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Elementary Reading Tutoring (Tue-Thu-Sat)"
+                                    data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="child-section-divider">
+                        <p class="child-subtitle" data-i18n="childSubtitle2">Daycare Sessions For</p>
+                        <p class="child-age-label" data-i18n="childAgeGroup2">Elementary School Age</p>
+                    </div>
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <h3 data-i18n="support4Title">After School Care</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="support4Time">3 - 6 PM |
+                                    Weekday</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="support4Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Elementary After School Care" data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                        <div class="support-card">
+                            <h3 data-i18n="support5Title">Before School Care</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="support5Time">7:30 - 9 AM |
+                                    Weekday</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="support5Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Elementary Before School Care" data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                        <div class="support-card">
+                            <h3 data-i18n="support6Title">Day Care</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="support6Time">9 - 3 AM |
+                                    Weekday & Weekend</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="support6Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration" data-program="Elementary Day Care"
+                                    data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECONDARY -->
+                <div id="secondary-panel" class="child-subtab-content hidden">
+                    <p class="child-subtitle" data-i18n="secondarySubtitle">Tutoring Sessions For</p>
+                    <p class="child-age-label" data-i18n="secondaryAgeGroup">Secondary Student</p>
+
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <h3 data-i18n="secondarySupport1Title">Math Tutoring</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="secondarySupport1Time">5 -
+                                    7 PM | Mon-Wed-Fri</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="secondarySupport1Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration" data-program="Secondary Math Tutoring"
+                                    data-i18n="register">Register</button>
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <h3 data-i18n="secondarySupport2Title">Science Tutoring</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="secondarySupport2Time">5 -
+                                    7 PM | Tue-Thu</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="secondarySupport2Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Secondary Science Tutoring" data-i18n="register">Register</button>
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <h3 data-i18n="secondarySupport3Title">English Tutoring</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="secondarySupport3Time">4 -
+                                    6 PM | Sat</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="secondarySupport3Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Secondary English Tutoring" data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="child-section-divider">
+                        <p class="child-subtitle" data-i18n="secondarySubtitle2">Support Sessions For</p>
+                        <p class="child-age-label" data-i18n="secondaryAgeGroup">Secondary Student</p>
+                    </div>
+
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <h3 data-i18n="secondarySupport4Title">Homework Club</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="secondarySupport4Time">4 -
+                                    6 PM | Weekday</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="secondarySupport4Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration" data-program="Secondary Homework Club"
+                                    data-i18n="register">Register</button>
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <h3 data-i18n="secondarySupport5Title">Study Skills Support</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="secondarySupport5Time">5 -
+                                    6 PM | Tue-Thu</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="secondarySupport5Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration"
+                                    data-program="Secondary Study Skills Support" data-i18n="register">Register</button>
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <h3 data-i18n="secondarySupport6Title">Exam Prep Help</h3>
+                            <p><strong data-i18n="timeLabel">Time:</strong> <span data-i18n="secondarySupport6Time">6 -
+                                    7 PM | Fri</span></p>
+                            <p><strong data-i18n="locationTextLabel">Location:</strong> <span
+                                    data-i18n="secondarySupport6Location">WestBrook Community Centre</span></p>
+                            <div class="support-bottom">
+                                <span data-i18n="supportDistance">1.6 km away</span>
+                                <button class="mini-btn open-child-registration" data-program="Secondary Exam Prep Help"
+                                    data-i18n="register">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLOTHING TAB -->
+            <div id="clothing-tab" class="tab-content hidden">
+                <div class="clothing-header">
+                    <div class="clothing-order-row">
+                        <button class="mini-btn" id="view-order-btn" data-i18n="viewOrder">View my order</button>
+                    </div>
+                    <h2>👚 <span data-i18n="clothingTitle">Clothing and Items</span></h2>
+                    <div class="filter-row clothing-subtabs">
+                        <button class="mini-btn clothing-filter-btn active-filter" data-clothing-tab="mom-panel"
+                            data-i18n="forMom">For Mom</button>
+                        <button class="mini-btn clothing-filter-btn" data-clothing-tab="child-panel"
+                            data-i18n="forChild">For Child</button>
+                    </div>
+                    <input type="text" class="search-bar" id="clothing-search" data-i18n-placeholder="search"
+                        placeholder="Search" />
+                    <div class="clothing-meta-row">
+                        <p data-i18n="clothingMetaLeft">Clothing items | Other items</p>
+                        <p data-i18n="clothingMetaRight">Filter by: Most Recent | Near me</p>
+                    </div>
+                </div>
+
+                <!-- MOM  -->
+                <div id="mom-panel" class="clothing-subtab-content">
+                    <div class="clothing-grid">
+                        <div class="item-card reserve-item-card" data-item-name="Backpack">
+                            <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQWaPpOyuRXQtDuIzJKNgewJgAA8_DNds7zpnM3dmkfIuh9UZUC1SrhIZnlmv1eX8FxkSFBjeuiCLLPgI-QD2CExV96pF_hAGo3wxrNf7nvFuh5O8igvF8sdQ"
+                                alt="Backpack">
+                            <p><strong data-i18n="itemLabel">Item:</strong> Backpack</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation" data-item="Backpack">Reserve</button>
+                            </div>
+                        </div>
+                        <div class="item-card reserve-item-card" data-item-name="Sweatpants">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Sweatpants">
+                            <p><strong data-i18n="itemLabel">Item:</strong> Sweatpants</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation" data-item="Sweatpants">Reserve</button>
+                            </div>
+                        </div>
+                        <div class="item-card reserve-item-card" data-item-name="Hoodie">
+                            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRMLki31JVcGYmzD3IFUdv0ufzB_4WFIPUJByF2sMxHByFTR6ctUX_-Y9Pq3hFXAFVTEsZ_OGNVY8Z5aUrTBGCakBsWAbwfeo1gcZf2X80eKGBVnS2FHWkVJin9vig-HUeD9qcV2_M&usqp=CAc"
+                                alt="Hoodie">
+                            <p><strong data-i18n="itemLabel">Item:</strong> Hoodie</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation" data-item="Hoodie">Reserve</button>
+                            </div>
+                        </div>
+                        <div class="item-card reserve-item-card" data-item-name="Desk Lamp">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Desk Lamp">
+                            <p><strong data-i18n="itemLabel">Item:</strong> Desk Lamp</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation" data-item="Desk Lamp">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHILD  -->
+                <div id="child-panel" class="clothing-subtab-content hidden">
+                    <div class="clothing-grid">
+                        <div class="item-card reserve-item-card" data-item-name="Kids Jacket">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Kids Jacket">
+                            <p><strong data-i18n="itemLabel">Item:</strong> Kids Jacket</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation" data-item="Kids Jacket">Reserve</button>
+                            </div>
+                        </div>
+                        <div class="item-card reserve-item-card" data-item-name="School Backpack">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="School Backpack">
+                            <p><strong data-i18n="itemLabel">Item:</strong> School Backpack</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation"
+                                    data-item="School Backpack">Reserve</button>
+                            </div>
+                        </div>
+                        <div class="item-card reserve-item-card" data-item-name="Notebook Set">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Notebook Set">
+                            <p><strong data-i18n="itemLabel">Item:</strong> Notebook Set</p>
+                            <p data-i18n="pickupLabel">Pick up at:</p>
+                            <p>Downtown Eastside Women's Centre</p>
+                            <div class="support-bottom">
+                                <span>2.8 km away</span>
+                                <button class="mini-btn open-item-reservation" data-item="Notebook Set">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESERVATION MODAL -->
+            <div id="reservation-modal" class="modal hidden">
+                <div class="modal-box">
+                    <h3 data-i18n="reservationForm">Reservation Form</h3>
+                    <input type="text" data-i18n-placeholder="fullName" placeholder="Full name" />
+                    <input type="text" data-i18n-placeholder="contactNumber" placeholder="Contact number" />
+                    <input type="text" data-i18n-placeholder="currentShelter" placeholder="Current shelter" />
+                    <input type="text" id="reserved-item-input" data-i18n-placeholder="itemToReserve"
+                        placeholder="Item to reserve" />
+                    <div class="button-row">
+                        <button id="close-modal" class="mini-btn" data-i18n="cancel">Cancel</button>
+                        <button class="green-btn" data-i18n="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHILD SUPPORT REGISTRATION MODAL -->
+            <div id="child-registration-modal" class="modal hidden">
+                <div class="modal-box child-registration-box">
+                    <h3 data-i18n="childRegistrationTitle">Registration form</h3>
+                    <input type="text" data-i18n-placeholder="parentName" placeholder="Parent name" />
+                    <input type="text" data-i18n-placeholder="parentContact" placeholder="Parent phone/email" />
+                    <input type="text" data-i18n-placeholder="currentAddress" placeholder="Current Address" />
+                    <input type="text" data-i18n-placeholder="childName" placeholder="Child name" />
+                    <div class="child-registration-bottom-row">
+                        <input type="text" data-i18n-placeholder="childGrade" placeholder="Child Grade" />
+                        <button class="green-btn" data-i18n="register">Register</button>
+                    </div>
+                    <input type="hidden" id="child-program-input" />
+                    <div class="button-row child-modal-actions">
+                        <button id="close-child-registration-modal" class="mini-btn" data-i18n="cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM RESERVATION MODAL -->
+            <div id="item-reservation-modal" class="modal hidden">
+                <div class="modal-box item-reservation-box">
+                    <div class="item-modal-top">
+                        <h3 data-i18n="itemReservationTitle">Reservation form</h3>
+                        <button id="close-item-reservation-modal" class="item-modal-close">×</button>
+                    </div>
+                    <input type="text" data-i18n-placeholder="yourName" placeholder="Your name:" />
+                    <input type="text" data-i18n-placeholder="contactNumber" placeholder="Contact number:" />
+                    <input type="text" data-i18n-placeholder="currentAddress" placeholder="Current Address:" />
+                    <p class="item-modal-label" data-i18n="pickupTimeLabel">Time & Date available to pick up:</p>
+                    <div class="item-reservation-bottom-row">
+                        <input type="text" data-i18n-placeholder="pickupTime" placeholder="Time" />
+                        <input type="text" data-i18n-placeholder="pickupDate" placeholder="Date" />
+                    </div>
+                    <input type="hidden" id="reserved-clothing-item-input" />
+                    <div class="item-modal-submit-row">
+                        <button class="green-btn item-reserve-submit" data-i18n="reserve">Reserve</button>
+                    </div>
+                </div>
+            </div>
+
+            <script src="script.js"></script>
+</body>
+
+</html>
